@@ -1,0 +1,16 @@
+Django>=4.2
+Pillow
+requests
+PyJWT
+django-allauth
+cryptography
+oauthlib
+requests-oauthlib
+
+# advanced
+gunicorn
+python-dotenv
+openai
+whitenoise
+psycopg2-binary
+
