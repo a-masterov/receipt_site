@@ -1,5 +1,6 @@
 from django.shortcuts import redirect
-from .models import SiteSetting
+from import_receipt.models import SiteSetting
+
 
 class GoogleLoginToggleMiddleware:
     def __init__(self, get_response):

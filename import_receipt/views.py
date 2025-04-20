@@ -21,7 +21,9 @@ def chatgpt_parse_receipt(image_path):
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": """
+                    {
+                        "type": "text",
+                        "text": """
                         Extract data from this receipt and return it as JSON. 
                         Example: 
                         {
@@ -61,9 +63,12 @@ def chatgpt_parse_receipt(image_path):
                         }
                         
                         Category: one of ("Food & Beverage", "Clothing & Apparel", "Electronics", "Home & Living", "Personal Care & Health", "Toys & Entertainment", "Others")
-"""
+""",
                     },
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}},
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/jpeg;base64,{image_data}"},
+                    },
                 ],
             }
         ],
@@ -75,18 +80,25 @@ def chatgpt_parse_receipt(image_path):
 
 def upload_receipt(request):
     json_output = None
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ReceiptForm(request.POST, request.FILES)
         if form.is_valid():
-            image = form.cleaned_data['image']
-            upload_dir = 'media/receipts'
+            image = form.cleaned_data["image"]
+            upload_dir = "media/receipts"
             os.makedirs(upload_dir, exist_ok=True)  # ✅ Ensure directory exists
             path = os.path.join(upload_dir, image.name)
-            with open(path, 'wb+') as destination:
+            with open(path, "wb+") as destination:
                 for chunk in image.chunks():
                     destination.write(chunk)
             json_output = chatgpt_parse_receipt(path)
     else:
         form = ReceiptForm()
 
-    return render(request, 'upload.html', {'form': form, 'json_output': json.dumps(json_output, indent=2) if json_output else None})
+    return render(
+        request,
+        "upload.html",
+        {
+            "form": form,
+            "json_output": json.dumps(json_output, indent=2) if json_output else None,
+        },
+    )
