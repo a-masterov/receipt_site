@@ -2,11 +2,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from app import views
+from import_receipt import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('', views.upload_receipt, name='upload'),
+    path('import/', views.upload_receipt, name='upload'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
