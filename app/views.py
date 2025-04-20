@@ -21,7 +21,48 @@ def chatgpt_parse_receipt(image_path):
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": "Extract data from this receipt and return it as JSON (vendor, date, total, items, taxes)."},
+                    {"type": "text", "text": """
+                        Extract data from this receipt and return it as JSON. 
+                        Example: 
+                        {
+                        "store": {
+                            "name": "Name of store",
+                            "id": "Id of store",
+                            "location": "Store address"
+                            },
+                        "number": "111222/33",
+                        "currency": "rsd",
+                        "date_time": "2025-04-18T09:51:53",
+                        "items": [
+                                    {
+                                    "description": "Cinija 10-27 (Б)",
+                                    "quantity": 1,
+                                    "price": 150.00,
+                                    "tax_base": 125.00,
+                                    "tax_rate": "20%",
+                                    "tax": 25.00,
+                                    "total": 150.00,
+                                    "category": "Home & Living"
+                                    },
+                                    {
+                                    "description": "Cinija 24-7867 (Б)",
+                                    "quantity": 1,
+                                    "price": 280.00,
+                                    "tax_base": 233.33,
+                                    "tax_rate": "20%",
+                                    "tax": 46.67,
+                                    "total": 280.00,
+                                    "category": "Home & Living"
+                                    }
+                            ]
+                        },
+                        "subtotal": 358.33,
+                        "payment_method": "card"
+                        }
+                        
+                        Category: one of ("Food & Beverage", "Clothing & Apparel", "Electronics", "Home & Living", "Personal Care & Health", "Toys & Entertainment", "Others")
+"""
+                    },
                     {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}},
                 ],
             }
