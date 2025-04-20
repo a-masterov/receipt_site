@@ -15,7 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'import_receipts',  # your app
+    'import_receipt',  # your app
     'django.contrib.sites',
     'allauth',
     'allauth.account',
