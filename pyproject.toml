@@ -1,0 +1,18 @@
+[project]
+name = "receipt-site"
+version = "0.1.0"
+description = "A site to manage expences"
+authors = [
+    {name = "Alexey Masterov",email = "alexeymasterov@neon.tech"}
+]
+license = {text = "BSD"}
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "django (>=5.2,<6.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

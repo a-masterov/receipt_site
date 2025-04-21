@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.11
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -7,5 +7,6 @@ WORKDIR /code
 COPY . /code
 
 RUN pip install poetry
+RUN poetry install
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["poetry", "run", "manage.py", "runserver", "0.0.0.0:8000"]
