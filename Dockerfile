@@ -7,6 +7,6 @@ WORKDIR /code
 COPY . /code
 
 RUN pip install poetry
-RUN poetry install
+RUN poetry install --no-root
 
-CMD ["poetry", "run", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]

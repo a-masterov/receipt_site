@@ -18,7 +18,7 @@ class Currency(models.Model):
 class Receipt(models.Model):
     def __str__(self):
         return self.number
-    store = models.ForeignKey(Store, on_delete=models.SET_NULL)
+    store = models.ForeignKey(Store, on_delete=models.SET_NULL, null=True)
     number = models.CharField(max_length=64)
     date_time = models.DateTimeField()
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)
@@ -46,4 +46,4 @@ class Items(models.Model):
     total = models.DecimalField(max_digits=9, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.SET_DEFAULT, default=Category.get_default_category,
                                  null=False, blank=False)
-    receipt = models.ForeignKey(Receipt, on_delete=models.SET_NULL)
+    receipt = models.ForeignKey(Receipt, on_delete=models.SET_NULL, null=True, blank=False)
